@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Tools</title>
+    <link rel="stylesheet" href="/CSS/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../scripts/percent_symbols.js" defer></script>
+    <script src="../scripts/numerals.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Nexus Tools</h1>
+      <nav>
+        <ul>
+          <li><a href="#password-generator">Password Generator</a></li>
+          <li><a href="#roman-calculator">Roman Numeral Converter</a></li>
+          <li><a href="#percentage-calculator">Percentage Calculator</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="password-generator" class="password-section">
+        <h2 class="section-title">Password Generator</h2>
+        <div class="card">
+          <h3>Password Generator Tool</h3>
+          <p>Generate secure passwords.</p>
+          <!-- Add your password generator input/logic here -->
+        </div>
+      </section>
+      <section id="roman-calculator" class="roman-section">
+        <h2 class="roman_section-title section-title">
+          Roman Numeral Converter
+        </h2>
+        <div class="roman_wrapper_flex">
+          <div class="wrapper_arabic_to_roman">
+            <div class="card_arabicToRoman">
+              <p class="arabic_to_roman_p">
+                Convert Arabic numbers to Roman numerals.
+              </p>
+              <form id="form_arabic_to_roman" class="form_arabic_to_roman">
+                <label for="arabic_number" class="roman_form-label"
+                  >Enter a number</label
+                >
+                <input
+                  type="number"
+                  class="roman_form-control"
+                  id="arabic_number"
+                  name="arabic_number"
+                  aria-describedby="arabic_numberHelp"
+                  required
+                />
+                <div id="numberHelp" class="roman_form-text">
+                  <small>Enter a number between 1 and 3999</small>
+                </div>
+                <button type="submit" class="arabic_to_roman_btn">
+                  Convert
+                </button>
+              </form>
+              <!-- Add your converter input/logic here -->
+            </div>
+            <div class="card_arabic_to_roman_result">
+              <h3>Result</h3>
+              <p id="result"></p>
+            </div>
+          </div>
+          <div class="wrapper_roman_to_arabic">
+            <div class="card_romanToArabic">
+              <p>Roman numerals to Arabic numbers</p>
+              <form id="form_arabic_to_roman" class="form_arabic_to_roman">
+                <label for="number" class="roman_form-label"
+                  >Enter a numeral</label
+                >
+                <input
+                  type="text"
+                  class="roman_form-control"
+                  id="raman_number"
+                  name="raman_number"
+                  aria-describedby="roman_numberHelp"
+                  required
+                />
+                <div id="numberHelp" class="roman_form-text">
+                  <small>Enter a valid Roman numeral</small>
+                </div>
+                <button type="submit" class="roman_to_arabic_btn">
+                  Convert
+                </button>
+              </form>
+              <!-- Add your converter input/logic here -->
+            </div>
+            <div class="card_roman_to_arabic_result">
+              <h3>Result</h3>
+              <p id="result"></p>
+            </div>
+          </div>
+        </div>
+        <div id="numeral-container"></div>
+      </section>
+      <section id="percentage-calculator" class="calculator-section">
+        <h2 class="perc_section-title section-title">Percentage Calculator</h2>
+        <div class="perc_wrapper_flex">
+          <div class="card_perc">
+            <h3>Percentage Calculator Tool</h3>
+            <p class="card_perc_desc">Calculate percentages easily.</p>
+            <div class="container">
+              <form class="form_perc" id="form_perc">
+                <div class="mb-3 mt-5">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="unerNum"
+                    name="userNum"
+                    aria-describedby="numHelp"
+                    placeholder="Enter a number"
+                    required
+                  />
+                  <div class="form-text">
+                    <small>The calculaton will be based on that number</small>
+                  </div>
+                </div>
+                <select
+                  class="form-select"
+                  name="userOp"
+                  aria-label="Small select example"
+                  required
+                >
+                  <option selected>Select the operation</option>
+                  <option value="1">Add (+)</option>
+                  <option value="2">Substract (-)</option>
+                </select>
+                <div class="input-group mb-3">
+                  <input
+                    type="number"
+                    placeholder="Enter percent"
+                    name="userPer"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                    required
+                  />
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto mb-2">
+                  <button type="submit" class="btn_calc-perc">Calculate</button>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <button type="reset" class="btn_reset-perc" id="reset">
+                    Reset
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card_res text-center">
+            <div class="card_res-header">x +/- y% =</div>
+            <div class="card_res-body">
+              <h5 class="card_res-title">result</h5>
+              <p class="card_res-text">***</p>
+            </div>
+          </div>
+        </div>
+        <div id="symbol-container"></div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 Dima Makarov</p>
+      <hr />
+    </footer>
+    <script>
+      window.onload = function () {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual"; // Disable automatic scroll restoration
+        }
+        window.scrollTo(0, 0); // Scroll to the top-left corner
+      };
+      document.addEventListener("DOMContentLoaded", function () {
+        const titles = document.querySelectorAll(".section-title");
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        });
+
+        titles.forEach((title) => {
+          observer.observe(title);
+        });
+      });
+    </script>
+  </body>
+</html>
