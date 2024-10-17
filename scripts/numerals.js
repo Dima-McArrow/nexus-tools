@@ -107,8 +107,8 @@ window.addEventListener("scroll", () => {
     numeral.style.opacity = opacity;
 
     // Slight position shift based on scroll amount and index
-    const offsetX = Math.sin(scrollAmount / 100 + index) * 5; // Sinusoidal shift
-    const offsetY = Math.cos(scrollAmount / 100 + index) * 5;
+    const offsetX = Math.sin(scrollAmount / 200 + index) * 5; // Sinusoidal shift
+    const offsetY = Math.cos(scrollAmount / 200 + index) * 5;
 
     // Apply new transform with movement and original scale
     numeral.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${initialScale})`;
