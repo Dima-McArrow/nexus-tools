@@ -318,67 +318,73 @@
     </footer>
     <script>
       window.onload = function () {
-        if ("scrollRestoration" in history) {
-          history.scrollRestoration = "manual"; // Disable automatic scroll restoration
+        if (window.innerWidth > 768) {
+          // Run only on desktop
+          if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual"; // Disable automatic scroll restoration
+          }
+          window.scrollTo(0, 0); // Scroll to the top-left corner
         }
-        window.scrollTo(0, 0); // Scroll to the top-left corner
       };
 
       document.addEventListener("DOMContentLoaded", function () {
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll("nav ul li a");
-        const titles = document.querySelectorAll(".section-title"); // Ensure to target the right class
+        if (window.innerWidth > 768) {
+          // Run only on desktop
+          const sections = document.querySelectorAll("section");
+          const navLinks = document.querySelectorAll("nav ul li a");
+          const titles = document.querySelectorAll(".section-title"); // Ensure to target the right class
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              const title = entry.target.querySelector(".section-title");
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                const title = entry.target.querySelector(".section-title");
 
-              if (entry.isIntersecting) {
-                // Highlight the active section in the nav
-                navLinks.forEach((link) => {
-                  link.classList.remove("active_nav");
-                });
-
-                const id = entry.target.id;
-                const activeLink = document.querySelector(
-                  `nav ul li a[href="#${id}"]`
-                );
-                if (activeLink) {
-                  activeLink.classList.add("active_nav");
-                }
-
-                // Add the class to animate the title
-                if (title) {
-                  title.classList.add("visible"); // Add class for the title animation
-                }
-              }
-            });
-          },
-          { threshold: 0.5 }
-        ); // Adjust threshold as needed
-
-        sections.forEach((section) => {
-          observer.observe(section);
-        });
-
-        // Titles animation observer
-        titles.forEach((title) => {
-          const titleObserver = new IntersectionObserver(
-            (titleEntries) => {
-              titleEntries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                  entry.target.classList.add("moving"); // Add moving animation class
-                } else {
-                  entry.target.classList.remove("moving"); // Remove moving class when out of view
+                  // Highlight the active section in the nav
+                  navLinks.forEach((link) => {
+                    link.classList.remove("active_nav");
+                  });
+
+                  const id = entry.target.id;
+                  const activeLink = document.querySelector(
+                    `nav ul li a[href="#${id}"]`
+                  );
+                  if (activeLink) {
+                    activeLink.classList.add("active_nav");
+                  }
+
+                  // Add the class to animate the title
+                  if (title) {
+                    title.classList.add("visible"); // Add class for the title animation
+                  }
                 }
               });
             },
-            { threshold: 0.5 }
-          ); // Adjust threshold as needed
+            { threshold: 0.5 } // Adjust threshold as needed
+          );
 
-          titleObserver.observe(title);
-        });
+          sections.forEach((section) => {
+            observer.observe(section);
+          });
+
+          // Titles animation observer
+          titles.forEach((title) => {
+            const titleObserver = new IntersectionObserver(
+              (titleEntries) => {
+                titleEntries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("moving"); // Add moving animation class
+                  } else {
+                    entry.target.classList.remove("moving"); // Remove moving class when out of view
+                  }
+                });
+              },
+              { threshold: 0.5 } // Adjust threshold as needed
+            );
+
+            titleObserver.observe(title);
+          });
+        }
       });
     </script>
   </body>

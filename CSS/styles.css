@@ -945,4 +945,24 @@ fieldset {
   .perc_wrapper_flex {
     margin-bottom: 5rem;
   }
+
+  html {
+    scroll-snap-type: none;
+  }
+
+  .section-title {
+    opacity: 1; /* Make titles visible by default */
+    transform: translateY(0); /* Ensure no offset on mobile */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .section-title.visible {
+    opacity: 1;
+    transform: translateY(0); /* Position when visible */
+  }
+
+  .section-title.moving {
+    opacity: 1;
+    transform: translateY(0); /* Ensure no animation issue on desktop */
+  }
 }
