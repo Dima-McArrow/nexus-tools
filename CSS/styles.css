@@ -950,6 +950,10 @@ fieldset {
     scroll-snap-type: none;
   }
 
+  .passGen_title {
+    margin-top: 12.5rem;
+  }
+
   .section-title {
     opacity: 1; /* Make titles visible by default */
     transform: translateY(0); /* Ensure no offset on mobile */
