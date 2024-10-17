@@ -11,13 +11,19 @@
     />
     <script src="../scripts/percent_symbols.js" defer></script>
     <script src="../scripts/numerals.js" defer></script>
+    <script type="module" src="../scripts/pecent_calc.js"></script>
+    <script type="module" src="../scripts/passwords.js"></script>
+    <script type="module" src="../scripts/roman_conv.js"></script>
+    <script type="module" src="../scripts/passGen.js"></script>
   </head>
   <body>
     <header>
       <h1>Nexus Tools</h1>
       <nav>
         <ul>
-          <li><a href="#password-generator">Password Generator</a></li>
+          <li>
+            <a href="#password-generator">Password Generator</a>
+          </li>
           <li><a href="#roman-calculator">Roman Numeral Converter</a></li>
           <li><a href="#percentage-calculator">Percentage Calculator</a></li>
         </ul>
@@ -25,12 +31,113 @@
     </header>
     <main>
       <section id="password-generator" class="password-section">
-        <h2 class="section-title">Password Generator</h2>
-        <div class="card">
-          <h3>Password Generator Tool</h3>
-          <p>Generate secure passwords.</p>
-          <!-- Add your password generator input/logic here -->
+        <h2 class="passGen_title section-title">Password Generator</h2>
+        <div class="password_wrapper_flex">
+          <div class="password_card">
+            <h3 class="password_card_title">Password Generator Tool</h3>
+            <p>
+              Generate a random secure password with the desired length (from 4
+              to 50 characters)
+            </p>
+            <form action="" id="pass_gen_form" class="pass_gen_form">
+              <fieldset>
+                <legend>The password will contain the following:</legend>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    id="uppercase_letter"
+                    name="uppercase_letter"
+                    checked
+                    disabled
+                  />
+                  <label for="uppercase_letter"
+                    >at least one uppercase letter ( <strong>A</strong> -
+                    <strong>Z</strong> )</label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="lowercase_letter"
+                    name="lowercase_letter"
+                    checked
+                    disabled
+                  />
+                  <label for="lowercase_letter"
+                    >at least one lowercase letter ( <strong>a</strong> -
+                    <strong>z</strong> )</label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="digit_entry"
+                    name="digit_entry"
+                    checked
+                  />
+                  <label for="digit_entry"
+                    >at least one digit [ <strong>0</strong> -
+                    <strong>9</strong> ]</label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    id="symbol_entry"
+                    name="symbol_entry"
+                    checked
+                  />
+                  <label for="symbol_entry"
+                    >at least one of the symbols: [ <strong>$</strong>
+                    <strong>!</strong> <strong>#</strong> <strong>@</strong>
+                    <strong>%</strong> <strong>^</strong> <strong>&</strong>
+                    <strong>*</strong> <strong>(</strong> <strong>)</strong>
+                    <strong>_</strong> <strong>-</strong> <strong>+</strong>
+                    <strong>=</strong> ]</label
+                  >
+                </div>
+              </fieldset>
+              <div class="pass_length_sel">
+                <label for="passLength"
+                  >The desired password Length (4 to 50 characters)</label
+                >
+                <input
+                  type="range"
+                  id="volume"
+                  name="passLength"
+                  min="8"
+                  max="50"
+                  list="markers"
+                  step="1"
+                />
+                <datalist id="markers">
+                  <option value="8" label="8"></option>
+                  <option value="10" label="10" class="value_ten"></option>
+                  <option value="20" label="20"></option>
+                  <option value="30" label="30"></option>
+                  <option value="40" label="40"></option>
+                  <option value="50" label="50"></option>
+                </datalist>
+              </div>
+              <button type="submit" id="submitLength">Generate</button>
+              <div id="passWrap"></div>
+              <button type="reset" class="lastButton">Reset</button>
+            </form>
+            <div class="selected_length_wrapper">
+              <p class="selected_length">Selected password length:</p>
+              <div class="selected_pass_length"></div>
+            </div>
+            <div class="star">
+              <p>The longer the password, the stronger it is!</p>
+            </div>
+          </div>
+          <div class="password_result_card">
+            <h3 class="password_result_title">Generated Password</h3>
+            <p class="password_result_text" id="password_result_text">***</p>
+          </div>
         </div>
+        <div id="passwords-container"></div>
       </section>
       <section id="roman-calculator" class="roman-section">
         <h2 class="roman_section-title section-title">
@@ -54,7 +161,7 @@
                   aria-describedby="arabic_numberHelp"
                   required
                 />
-                <div id="numberHelp" class="roman_form-text">
+                <div id="arabic_numberHelp" class="roman_form-text">
                   <small>Enter a number between 1 and 3999</small>
                 </div>
                 <button type="submit" class="arabic_to_roman_btn">
@@ -64,26 +171,25 @@
               <!-- Add your converter input/logic here -->
             </div>
             <div class="card_arabic_to_roman_result">
-              <h3>Result</h3>
-              <p id="result"></p>
+              <p id="roman_result">***</p>
             </div>
           </div>
           <div class="wrapper_roman_to_arabic">
             <div class="card_romanToArabic">
               <p>Roman numerals to Arabic numbers</p>
-              <form id="form_arabic_to_roman" class="form_arabic_to_roman">
-                <label for="number" class="roman_form-label"
+              <form id="form_roman_to_arabic" class="form_arabic_to_roman">
+                <label for="raman_number" class="roman_form-label"
                   >Enter a numeral</label
                 >
                 <input
                   type="text"
                   class="roman_form-control"
-                  id="raman_number"
-                  name="raman_number"
+                  id="roman_number"
+                  name="roman_number"
                   aria-describedby="roman_numberHelp"
                   required
                 />
-                <div id="numberHelp" class="roman_form-text">
+                <div id="roman_numberHelp" class="roman_form-text">
                   <small>Enter a valid Roman numeral</small>
                 </div>
                 <button type="submit" class="roman_to_arabic_btn">
@@ -93,14 +199,13 @@
               <!-- Add your converter input/logic here -->
             </div>
             <div class="card_roman_to_arabic_result">
-              <h3>Result</h3>
-              <p id="result"></p>
+              <p id="arabic_result">***</p>
             </div>
           </div>
         </div>
         <div id="numeral-container"></div>
       </section>
-      <section id="percentage-calculator" class="calculator-section">
+      <section id="percentage-calculator" class="calculator-section section">
         <h2 class="perc_section-title section-title">Percentage Calculator</h2>
         <div class="perc_wrapper_flex">
           <div class="card_perc">
@@ -112,8 +217,8 @@
                   <input
                     type="number"
                     class="form-control"
-                    id="unerNum"
-                    name="userNum"
+                    id="userNumber"
+                    name="userNumber"
                     aria-describedby="numHelp"
                     placeholder="Enter a number"
                     required
@@ -154,10 +259,10 @@
             </div>
           </div>
           <div class="card_res text-center">
-            <div class="card_res-header">x +/- y% =</div>
+            <div class="card_res-header perc_card_res_header">x +/- y% =</div>
             <div class="card_res-body">
-              <h5 class="card_res-title">result</h5>
-              <p class="card_res-text">***</p>
+              <h5 class="card_res-title perc_card_res-title">result</h5>
+              <p class="card_res-text perc_card_res-text">***</p>
             </div>
           </div>
         </div>
@@ -167,6 +272,41 @@
     <footer>
       <p>&copy; 2024 Dima Makarov</p>
       <hr />
+      <p>feel free to contact me</p>
+      <div class="footer_link_wrapper">
+        <a
+          href="https://www.linkedin.com/in/dimitri-makarov-58602851/"
+          target="_blank"
+        >
+          <svg
+            width="30px"
+            height="30px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="footer_link_icon"
+          >
+            <path
+              d="M6.5 8C7.32843 8 8 7.32843 8 6.5C8 5.67157 7.32843 5 6.5 5C5.67157 5 5 5.67157 5 6.5C5 7.32843 5.67157 8 6.5 8Z"
+              fill="white"
+            />
+            <path
+              d="M5 10C5 9.44772 5.44772 9 6 9H7C7.55228 9 8 9.44771 8 10V18C8 18.5523 7.55228 19 7 19H6C5.44772 19 5 18.5523 5 18V10Z"
+              fill="white"
+            />
+            <path
+              d="M11 19H12C12.5523 19 13 18.5523 13 18V13.5C13 12 16 11 16 13V18.0004C16 18.5527 16.4477 19 17 19H18C18.5523 19 19 18.5523 19 18V12C19 10 17.5 9 15.5 9C13.5 9 13 10.5 13 10.5V10C13 9.44771 12.5523 9 12 9H11C10.4477 9 10 9.44772 10 10V18C10 18.5523 10.4477 19 11 19Z"
+              fill="white"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M20 1C21.6569 1 23 2.34315 23 4V20C23 21.6569 21.6569 23 20 23H4C2.34315 23 1 21.6569 1 20V4C1 2.34315 2.34315 1 4 1H20ZM20 3C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20Z"
+              fill="white"
+            />
+          </svg>
+        </a>
+      </div>
     </footer>
     <script>
       window.onload = function () {
@@ -175,20 +315,61 @@
         }
         window.scrollTo(0, 0); // Scroll to the top-left corner
       };
-      document.addEventListener("DOMContentLoaded", function () {
-        const titles = document.querySelectorAll(".section-title");
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav ul li a");
+        const titles = document.querySelectorAll(".section-title"); // Ensure to target the right class
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const title = entry.target.querySelector(".section-title");
+
+              if (entry.isIntersecting) {
+                // Highlight the active section in the nav
+                navLinks.forEach((link) => {
+                  link.classList.remove("active_nav");
+                });
+
+                const id = entry.target.id;
+                const activeLink = document.querySelector(
+                  `nav ul li a[href="#${id}"]`
+                );
+                if (activeLink) {
+                  activeLink.classList.add("active_nav");
+                }
+
+                // Add the class to animate the title
+                if (title) {
+                  title.classList.add("visible"); // Add class for the title animation
+                }
+              }
+            });
+          },
+          { threshold: 0.5 }
+        ); // Adjust threshold as needed
+
+        sections.forEach((section) => {
+          observer.observe(section);
         });
 
+        // Titles animation observer
         titles.forEach((title) => {
-          observer.observe(title);
+          const titleObserver = new IntersectionObserver(
+            (titleEntries) => {
+              titleEntries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("moving"); // Add moving animation class
+                } else {
+                  entry.target.classList.remove("moving"); // Remove moving class when out of view
+                }
+              });
+            },
+            { threshold: 0.5 }
+          ); // Adjust threshold as needed
+
+          titleObserver.observe(title);
         });
       });
     </script>

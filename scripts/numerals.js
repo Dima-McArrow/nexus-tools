@@ -15,15 +15,15 @@ const romanNumerals = [
   "C",
   "D",
   "M",
-  "MCMXCIV",
-  "MMXX",
-  "MMXXI",
-  "MMXXII",
-  "MMXXIII",
+  "XL",
+  "XC",
+  "DCCC",
+  "MCD",
+  "MCDXLV",
   "MMXXIV",
   "MMXXV",
   "CCXXI",
-  "DCCXCVIII",
+  "DCCXVIII",
 ]; // Roman numerals
 
 const NUMERAL_COUNT = 40; // Number of numerals to generate
