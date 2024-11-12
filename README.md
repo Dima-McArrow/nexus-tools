@@ -89,4 +89,4 @@ To get a local copy up and running follow these simple steps:
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/Dima-McArrow) - Dimitri Makarov
+- [@Dima-McArrow](https://github.com/Dima-McArrow) - Dimitri Makarov
