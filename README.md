@@ -4,7 +4,7 @@
 </p>
 
 <h4 align="center">🛠 Nexus Tools README</h4>
-<h3 align="center">Project Title</h3>
+<h3 align="center">Nexus Tools</h3>
 
 <div align="center">
 
